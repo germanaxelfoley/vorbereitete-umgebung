@@ -1,0 +1,2740 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MontessoriWerk — Portal für Pädagogen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest: #2D5016;
+    --forest-light: #3E6B20;
+    --leaf: #5E8A2A;
+    --sage: #8BAF52;
+    --sage-pale: #C8DCA4;
+    --cream: #F5F0E8;
+    --cream-deep: #EDE4D3;
+    --sand: #D4C5A9;
+    --terra: #B5622A;
+    --terra-pale: #F0DDD0;
+    --amber: #C9882A;
+    --amber-pale: #F5E6C8;
+    --sky: #3A7CA8;
+    --sky-pale: #D0E6F0;
+    --plum: #6B3A7A;
+    --plum-pale: #E8D8EE;
+    --text: #1A1A14;
+    --text-muted: #5A5A4A;
+    --text-light: #888878;
+    --white: #FFFFFF;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--forest);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    gap: 0;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 1rem 2rem 1rem 0;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    margin-right: 1.5rem;
+    white-space: nowrap;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo span { color: var(--sage-pale); }
+
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+    overflow-x: auto;
+    flex: 1;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar { display: none; }
+
+  .nav-links a {
+    display: block;
+    padding: 1rem 1rem;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    letter-spacing: 0.2px;
+  }
+
+  .nav-links a:hover {
+    color: var(--cream);
+    border-bottom-color: var(--sage-pale);
+  }
+
+  .nav-badge {
+    background: var(--terra);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 999px;
+    margin-left: 5px;
+    vertical-align: 1px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 60%, var(--leaf) 100%);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(94,138,42,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(181,98,42,0.1) 0%, transparent 40%);
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sage-pale);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    position: relative;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--sage-pale);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(245,240,232,0.8);
+    max-width: 580px;
+    margin: 0 auto 2rem;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-tag {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--cream);
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.6rem;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.1s, box-shadow 0.15s;
+    cursor: pointer;
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  .btn-primary {
+    background: var(--terra);
+    color: white;
+    box-shadow: 0 4px 12px rgba(181,98,42,0.4);
+  }
+
+  .btn-primary:hover { box-shadow: 0 6px 20px rgba(181,98,42,0.5); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--cream);
+    border: 1.5px solid rgba(255,255,255,0.35);
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--cream-deep);
+    border-bottom: 1px solid var(--sand);
+    padding: 1rem 2rem;
+  }
+
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .stat-num {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--forest);
+  }
+
+  /* SECTION LAYOUTS */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--leaf);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--forest);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+
+  .section-header p {
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    max-width: 560px;
+    font-size: 15px;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    background: var(--cream-deep);
+    border-top: 1px solid var(--sand);
+    border-bottom: 1px solid var(--sand);
+  }
+
+  /* CARD GRID */
+  .card-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  .card-grid-3 {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: box-shadow 0.15s, transform 0.1s, border-color 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 20px rgba(45,80,22,0.1);
+    transform: translateY(-2px);
+    border-color: var(--sage);
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--forest);
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .card-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--cream-deep);
+    color: var(--text-muted);
+    align-self: flex-start;
+  }
+
+  .card-arrow {
+    color: var(--sage);
+    font-size: 18px;
+    margin-top: auto;
+    align-self: flex-end;
+  }
+
+  /* MONTESSORI BEREICHE — REGAL-LOOK */
+  .material-shelf {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .shelf-tabs {
+    display: flex;
+    background: var(--cream-deep);
+    border-bottom: 1px solid var(--sand);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .shelf-tabs::-webkit-scrollbar { display: none; }
+
+  .shelf-tab {
+    padding: 0.9rem 1.4rem;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    color: var(--text-muted);
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .shelf-tab:hover { color: var(--forest); background: rgba(255,255,255,0.5); }
+
+  .shelf-tab.active {
+    color: var(--forest);
+    border-bottom-color: var(--leaf);
+    background: var(--white);
+  }
+
+  .shelf-content {
+    padding: 2rem;
+  }
+
+  .shelf-panel { display: none; }
+  .shelf-panel.active { display: block; }
+
+  .darb-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .darb-card {
+    background: var(--cream);
+    border: 1px solid var(--cream-deep);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+    text-decoration: none;
+  }
+
+  .darb-card:hover {
+    background: var(--cream-deep);
+    border-color: var(--sage);
+  }
+
+  .darb-card-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+
+  .darb-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--forest);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .darb-card-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .darb-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+  }
+
+  /* COLOR THEMES PER BEREICH */
+  .theme-prakt { --t-bg: #F0E8D8; --t-badge-bg: #C9882A; --t-badge-text: white; }
+  .theme-sinne { --t-bg: #E8D8EE; --t-badge-bg: #6B3A7A; --t-badge-text: white; }
+  .theme-math  { --t-bg: #D0E6F0; --t-badge-bg: #3A7CA8; --t-badge-text: white; }
+  .theme-spra  { --t-bg: #F0DDD0; --t-badge-bg: #B5622A; --t-badge-text: white; }
+  .theme-kosm  { --t-bg: #C8DCA4; --t-badge-bg: #3E6B20; --t-badge-text: white; }
+
+  .darb-card.themed {
+    background: var(--t-bg);
+  }
+
+  .darb-badge.themed-badge {
+    background: var(--t-badge-bg);
+    color: var(--t-badge-text);
+  }
+
+  /* INFO CARDS — THEORIE */
+  .info-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .info-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    background: var(--cream-deep);
+  }
+
+  .info-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--forest);
+    line-height: 1.3;
+  }
+
+  .info-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .info-list li {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .info-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--leaf);
+  }
+
+  /* KREIS-SECTION */
+  .kreis-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  .kreis-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.12s, box-shadow 0.15s;
+  }
+
+  .kreis-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(45,80,22,0.1);
+  }
+
+  .kreis-card-top {
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .kreis-emoji {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .kreis-card-body { flex: 1; }
+
+  .kreis-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 4px;
+  }
+
+  .kreis-card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .kreis-card-footer {
+    border-top: 1px solid var(--cream-deep);
+    padding: 0.75rem 1.5rem;
+    background: var(--cream);
+    font-size: 12px;
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* TEAM SECTION */
+  .team-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .team-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .team-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .team-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .team-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--forest);
+  }
+
+  .team-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .team-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .team-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 13px;
+    color: var(--sky);
+    text-decoration: none;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--cream-deep);
+    cursor: pointer;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-family: 'DM Sans', sans-serif;
+    text-align: left;
+    width: 100%;
+    transition: color 0.12s;
+  }
+
+  .team-link:last-child { border-bottom: none; }
+  .team-link:hover { color: var(--sky); opacity: 0.75; }
+
+  .team-link-icon { font-size: 16px; }
+
+  /* FORMULARE */
+  .formular-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .formular-table th {
+    background: var(--cream-deep);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--sand);
+  }
+
+  .formular-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--cream-deep);
+    vertical-align: middle;
+    color: var(--text);
+  }
+
+  .formular-table tr:last-child td { border-bottom: none; }
+
+  .formular-table tr:hover td { background: var(--cream); }
+
+  .f-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 999px;
+  }
+
+  .f-badge-new { background: var(--terra-pale); color: var(--terra); }
+  .f-badge-bay { background: var(--cream-deep); color: var(--text-muted); }
+  .f-badge-word { background: var(--sky-pale); color: var(--sky); }
+  .f-badge-pdf  { background: var(--terra-pale); color: var(--terra); }
+
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--leaf);
+    background: none;
+    border: 1px solid var(--sage);
+    border-radius: 6px;
+    padding: 4px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.12s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .dl-btn:hover { background: var(--cream-deep); }
+
+  /* TAGESABLAUF TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--sage-pale);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--leaf);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--sage);
+  }
+
+  .timeline-time {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--leaf);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .timeline-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .timeline-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* LIED KARTEN */
+  .lied-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .lied-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .lied-season {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  .lied-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--forest);
+    line-height: 1.3;
+  }
+
+  .lied-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  .lied-strophe {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--cream);
+    border-left: 3px solid var(--sage);
+    padding: 0.75rem 1rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  /* BASTELN */
+  .bastel-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.12s, box-shadow 0.15s;
+  }
+
+  .bastel-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  }
+
+  .bastel-thumb {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+  }
+
+  .bastel-body {
+    padding: 1.1rem 1.25rem 1.25rem;
+  }
+
+  .bastel-age {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--terra);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .bastel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 4px;
+  }
+
+  .bastel-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--forest);
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 2rem 2rem;
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo span { color: var(--sage-pale); }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sage-pale);
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 3px 0;
+    transition: color 0.12s;
+  }
+
+  .footer-col a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--cream); }
+
+  /* BAYERISCHES BANNER */
+  .bay-banner {
+    background: linear-gradient(135deg, #0066CC 0%, #1A4B8C 100%);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .bay-flag {
+    font-size: 36px;
+    line-height: 1;
+  }
+
+  .bay-text { flex: 1; min-width: 200px; }
+
+  .bay-text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .bay-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .bay-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .bay-link {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.12s;
+  }
+
+  .bay-link:hover { background: rgba(255,255,255,0.25); }
+
+  /* OBSERVATION BOX */
+  .obs-box {
+    background: var(--forest);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .obs-box::before {
+    content: '"';
+    position: absolute;
+    top: -1rem;
+    right: 2rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+
+  .obs-box blockquote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .obs-box cite {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    font-style: normal;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--white);
+    border: 1.5px solid var(--sand);
+    border-radius: var(--radius);
+    padding: 0.6rem 1rem;
+    max-width: 480px;
+  }
+
+  .search-wrap input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: transparent;
+  }
+
+  .search-icon { color: var(--text-light); font-size: 16px; }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--cream-deep);
+    border: none;
+    border-radius: var(--radius);
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+  }
+
+  .modal-close:hover { background: var(--sand); }
+
+  .modal h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--forest);
+    margin-bottom: 0.25rem;
+  }
+
+  .modal-sub {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-section { margin-bottom: 1.5rem; }
+
+  .modal-section h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--leaf);
+    margin-bottom: 0.6rem;
+  }
+
+  .modal-section p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .step-list {
+    counter-reset: steps;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .step-list li {
+    counter-increment: steps;
+    display: flex;
+    gap: 0.75rem;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+
+  .step-list li::before {
+    content: counter(steps);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    background: var(--forest);
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  /* ACCORDION */
+  .accordion-item {
+    border: 1px solid var(--sand);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    background: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--forest);
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    gap: 1rem;
+    transition: background 0.12s;
+  }
+
+  .accordion-header:hover { background: var(--cream); }
+
+  .accordion-chevron {
+    font-size: 18px;
+    color: var(--text-light);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .accordion-item.open .accordion-chevron { transform: rotate(180deg); }
+
+  .accordion-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    background: var(--white);
+    border-top: 1px solid var(--cream-deep);
+  }
+
+  .accordion-item.open .accordion-body { display: block; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .nav-logo { padding: 0.8rem 1rem 0.8rem 0; font-size: 18px; }
+    .hero { padding: 3rem 1.25rem 2.5rem; }
+    .section { padding: 2.5rem 1.25rem; }
+    .shelf-content { padding: 1.25rem; }
+    .modal { padding: 1.5rem; }
+    .bay-banner { gap: 1rem; }
+    .formular-table { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Montessori<span>Werk</span></a>
+    <ul class="nav-links">
+      <li><a href="#montessori">Montessori</a></li>
+      <li><a href="#darbietungen">Darbietungen</a></li>
+      <li><a href="#tagesablauf">Tagesablauf</a></li>
+      <li><a href="#kreis">Kreisgestaltung</a></li>
+      <li><a href="#basteln">Basteln & Lieder</a></li>
+      <li><a href="#team">Team & Azubi</a></li>
+      <li><a href="#formulare">Formulare <span class="nav-badge">Bayern</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-eyebrow">Freies Portal für Kindertagesstätten</p>
+  <h1>Wissen, das Kindern<br><em>Raum zum Wachsen</em> gibt</h1>
+  <p class="hero-sub">
+    Alle Materialien, Darbietungen und Praxishilfen für Montessori-Pädagoginnen und -Pädagogen in Bayern — kostenlos, übersichtlich, jederzeit verfügbar.
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag">🌿 Montessori-Pädagogik</span>
+    <span class="hero-tag">🏔 Bayern & BayKiBiG</span>
+    <span class="hero-tag">👧 3–6 Jahre</span>
+    <span class="hero-tag">📋 Vorlagen & Formulare</span>
+    <span class="hero-tag">🎵 Lieder & Kreis</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#darbietungen" class="btn btn-primary">Darbietungen entdecken</a>
+    <a href="#formulare" class="btn btn-outline">Formulare (Bayern)</a>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">120+</span> Darbietungen</div>
+    <div class="stat-item"><span class="stat-num">40+</span> Kreisideen</div>
+    <div class="stat-item"><span class="stat-num">60+</span> Bastelanleitungen</div>
+    <div class="stat-item"><span class="stat-num">30+</span> Formulare Bayern</div>
+    <div class="stat-item"><span class="stat-num">100%</span> Kostenlos</div>
+  </div>
+</div>
+
+<!-- MONTESSORI GRUNDLAGEN -->
+<section id="montessori">
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Grundlagen</p>
+      <h2>Montessori-Pädagogik verstehen</h2>
+      <p>Hintergründe, Prinzipien und der Geist hinter Maria Montessoris Werk — für alle Alters- und Erfahrungsstufen.</p>
+    </div>
+
+    <div class="obs-box" style="margin-bottom: 2.5rem;">
+      <blockquote>„Hilf mir, es selbst zu tun. Zeig mir, wie es geht. Tu es nicht für mich. Ich kann es und will es allein tun."</blockquote>
+      <cite>— Maria Montessori</cite>
+    </div>
+
+    <div class="card-grid card-grid-3">
+      <div class="info-card" onclick="openModal('polarisation')">
+        <div class="info-card-header">
+          <div class="info-icon">🎯</div>
+          <h3>Polarisation der Aufmerksamkeit</h3>
+        </div>
+        <p>Der Zustand tiefer Konzentration, in dem ein Kind vollständig in eine Tätigkeit versunken ist — der Kern der Montessori-Beobachtung.</p>
+        <ul class="info-list">
+          <li>Wiederholung als Entwicklungsmerkmal</li>
+          <li>Konzentration nicht unterbrechen</li>
+          <li>Beobachtung als pädagogische Haltung</li>
+        </ul>
+      </div>
+
+      <div class="info-card" onclick="openModal('sensibel')">
+        <div class="info-card-header">
+          <div class="info-icon">🌱</div>
+          <h3>Sensible Phasen</h3>
+        </div>
+        <p>Zeitfenster erhöhter Empfänglichkeit für bestimmte Fähigkeiten — Sprache, Ordnung, Bewegung, Sinne, kleine Dinge, soziales Leben.</p>
+        <ul class="info-list">
+          <li>Ordnungssinn (ca. 2–4 Jahre)</li>
+          <li>Sprache (Geburt bis 6 Jahre)</li>
+          <li>Bewegung und Feinmotorik</li>
+          <li>Soziale Verhaltensweisen</li>
+        </ul>
+      </div>
+
+      <div class="info-card" onclick="openModal('umgebung')">
+        <div class="info-card-header">
+          <div class="info-icon">🏡</div>
+          <h3>Vorbereitete Umgebung</h3>
+        </div>
+        <p>Der Raum als „dritter Erzieher" — Ordnung, Ästhetik, Zugänglichkeit und Freiheit als gestaltete Einladung zur Selbsttätigkeit.</p>
+        <ul class="info-list">
+          <li>Material in Kinderhöhe</li>
+          <li>Übersichtlichkeit und Ästhetik</li>
+          <li>Selbstkontrollierende Materialien</li>
+          <li>Mischaltrige Gruppen</li>
+        </ul>
+      </div>
+
+      <div class="info-card" onclick="openModal('rolle')">
+        <div class="info-card-header">
+          <div class="info-icon">👁</div>
+          <h3>Rolle der Erzieherin</h3>
+        </div>
+        <p>Vom Unterrichten zum Begleiten — die Pädagogin als aufmerksame Beobachterin, die die Umgebung gestaltet und bei Bedarf zur Seite steht.</p>
+        <ul class="info-list">
+          <li>Zurückhalten als Stärke</li>
+          <li>Beobachtungsprotokoll führen</li>
+          <li>Darbietung als Einladung</li>
+        </ul>
+      </div>
+
+      <div class="info-card" onclick="openModal('freiarbeit')">
+        <div class="info-card-header">
+          <div class="info-icon">⏱</div>
+          <h3>Freiarbeitszeit</h3>
+        </div>
+        <p>Ungestörte Arbeitszeit ist das Herzstück des Montessori-Tages — mindestens 3 Stunden am Stück, ohne Unterbrechung durch Gruppenaktivitäten.</p>
+        <ul class="info-list">
+          <li>Keine Pflichtaktivitäten dazwischen</li>
+          <li>Kinder wählen Material selbst</li>
+          <li>Pädagogin beobachtet und begleitet</li>
+        </ul>
+      </div>
+
+      <div class="info-card" onclick="openModal('material')">
+        <div class="info-card-header">
+          <div class="info-icon">🔺</div>
+          <h3>Montessori-Material</h3>
+        </div>
+        <p>Didaktisch durchdachte Materialien mit eingebetteter Fehlerkontrolle — isolieren jeweils eine Eigenschaft und laden zur Wiederholung ein.</p>
+        <ul class="info-list">
+          <li>Fehlerquelle im Material selbst</li>
+          <li>Isolierung einer Eigenschaft</li>
+          <li>Ästhetik und Haltbarkeit</li>
+          <li>Vollständigkeit jedes Sets</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DARBIETUNGEN -->
+<section id="darbietungen" class="section-divider">
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Darbietungen</p>
+      <h2>Materialien nach Bildungsbereichen</h2>
+      <p>Schritt-für-Schritt-Anleitungen für alle Montessori-Darbietungen — von der Übungssequenz bis zur Fehlerquelle.</p>
+    </div>
+
+    <div class="material-shelf">
+      <div class="shelf-tabs">
+        <button class="shelf-tab active" onclick="showPanel('prakt', this)">🫙 Praktisches Leben</button>
+        <button class="shelf-tab" onclick="showPanel('sinne', this)">🔺 Sinnesmaterial</button>
+        <button class="shelf-tab" onclick="showPanel('math', this)">🔢 Mathematik</button>
+        <button class="shelf-tab" onclick="showPanel('spra', this)">🔤 Sprache</button>
+        <button class="shelf-tab" onclick="showPanel('kosm', this)">🌍 Kosmische Erziehung</button>
+      </div>
+
+      <div class="shelf-content">
+
+        <!-- PRAKTISCHES LEBEN -->
+        <div class="shelf-panel active" id="panel-prakt">
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:1.25rem;">Übungen des praktischen Lebens stärken Konzentration, Koordination, Unabhängigkeit und Ordnung — die Basis aller weiteren Arbeit.</p>
+          <div class="darb-grid">
+            <div class="darb-card themed theme-prakt" onclick="openDarb('schütten')">
+              <span class="darb-badge themed-badge theme-prakt">Grundübung</span>
+              <div class="darb-card-title">Schütten mit zwei Krügen</div>
+              <div class="darb-card-sub">Feinmotorik · 3–4 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('löffeln')">
+              <span class="darb-badge themed-badge theme-prakt">Grundübung</span>
+              <div class="darb-card-title">Löffeln (Körner/Linseln)</div>
+              <div class="darb-card-sub">Koordination · 3–4 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('falten')">
+              <span class="darb-badge themed-badge theme-prakt">Textilpflege</span>
+              <div class="darb-card-title">Serviette falten</div>
+              <div class="darb-card-sub">Ordnung · 3–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('rahmen')">
+              <span class="darb-badge themed-badge theme-prakt">Anziehrahmen</span>
+              <div class="darb-card-title">Knopfrahmen</div>
+              <div class="darb-card-sub">Selbständigkeit · 2,5–4 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('reißverschluss')">
+              <span class="darb-badge themed-badge theme-prakt">Anziehrahmen</span>
+              <div class="darb-card-title">Reißverschlussrahmen</div>
+              <div class="darb-card-sub">Selbständigkeit · 3–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('tisch')">
+              <span class="darb-badge themed-badge theme-prakt">Pflege</span>
+              <div class="darb-card-title">Tisch abwischen</div>
+              <div class="darb-card-sub">Ordnung & Pflege · 3–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('pflanze')">
+              <span class="darb-badge themed-badge theme-prakt">Natur</span>
+              <div class="darb-card-title">Pflanze gießen</div>
+              <div class="darb-card-sub">Fürsorge · 3–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('hände')">
+              <span class="darb-badge themed-badge theme-prakt">Hygiene</span>
+              <div class="darb-card-title">Hände waschen</div>
+              <div class="darb-card-sub">Selbstpflege · 2,5–4 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('brot')">
+              <span class="darb-badge themed-badge theme-prakt">Küche</span>
+              <div class="darb-card-title">Brot schmieren</div>
+              <div class="darb-card-sub">Alltagskompetenz · 3–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('schneiden')">
+              <span class="darb-badge themed-badge theme-prakt">Küche</span>
+              <div class="darb-card-title">Obst/Gemüse schneiden</div>
+              <div class="darb-card-sub">Alltagskompetenz · 4–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('kehrschaufel')">
+              <span class="darb-badge themed-badge theme-prakt">Pflege</span>
+              <div class="darb-card-title">Kehren mit Handfeger</div>
+              <div class="darb-card-sub">Umgebungspflege · 3–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-prakt" onclick="openDarb('schuhe')">
+              <span class="darb-badge themed-badge theme-prakt">Selbstpflege</span>
+              <div class="darb-card-title">Schuhe putzen</div>
+              <div class="darb-card-sub">Selbständigkeit · 4–6 Jahre</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SINNESMATERIAL -->
+        <div class="shelf-panel" id="panel-sinne">
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:1.25rem;">Das Sinnesmaterial verfeinert und schärft alle Sinne — als Vorbereitung auf abstraktes Denken und als Brücke zur Mathematik und Sprache.</p>
+          <div class="darb-grid">
+            <div class="darb-card themed theme-sinne" onclick="openDarb('rosa_turm')">
+              <span class="darb-badge themed-badge theme-sinne">Visuell</span>
+              <div class="darb-card-title">Rosa Turm</div>
+              <div class="darb-card-sub">Dimension · 2,5–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-sinne" onclick="openDarb('braune_treppe')">
+              <span class="darb-badge themed-badge theme-sinne">Visuell</span>
+              <div class="darb-card-title">Braune Treppe</div>
+              <div class="darb-card-sub">Dimension · 3–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-sinne" onclick="openDarb('rote_stangen')">
+              <span class="darb-badge themed-badge theme-sinne">Visuell</span>
+              <div class="darb-card-title">Rote Stangen</div>
+              <div class="darb-card-sub">Länge · 3–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-sinne" onclick="openDarb('farbplaettchen')">
+              <span class="darb-badge themed-badge theme-sinne">Visuell</span>
+              <div class="darb-card-title">Farbplättchen (Kasten 1–3)</div>
+              <div class="darb-card-sub">Farbe · 2,5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-sinne" onclick="openDarb('geometrie')">
+              <span class="darb-badge themed-badge theme-sinne">Geometrisch</span>
+              <div class="darb-card-title">Geometrisches Schränkchen</div>
+              <div class="darb-card-sub">Form · 3–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-sinne" onclick="openDarb('tastplatten')">
+              <span class="darb-badge themed-badge theme-sinne">Taktil</span>
+              <div class="darb-card-title">Tastplatten</div>
+              <div class="darb-card-sub">Tastsinn · 3–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-sinne" onclick="openDarb('klangglocken')">
+              <span class="darb-badge themed-badge theme-sinne">Auditiv</span>
+              <div class="darb-card-title">Klangglocken</div>
+              <div class="darb-card-sub">Gehör · 3–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-sinne" onclick="openDarb('riechbuechsen')">
+              <span class="darb-badge themed-badge theme-sinne">Olfaktorisch</span>
+              <div class="darb-card-title">Riechbüchsen</div>
+              <div class="darb-card-sub">Geruch · 3–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-sinne" onclick="openDarb('gewicht')">
+              <span class="darb-badge themed-badge theme-sinne">Barisch</span>
+              <div class="darb-card-title">Gewichtsplättchen</div>
+              <div class="darb-card-sub">Gewicht · 4–6 Jahre</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MATHEMATIK -->
+        <div class="shelf-panel" id="panel-math">
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:1.25rem;">Vom konkreten Erleben zur Abstraktion — Montessori-Mathematik gibt dem abstrakten Zahlenbegriff einen sinnlichen Ursprung.</p>
+          <div class="darb-grid">
+            <div class="darb-card themed theme-math" onclick="openDarb('nummerstaebe')">
+              <span class="darb-badge themed-badge theme-math">Zahleneinführung</span>
+              <div class="darb-card-title">Nummerstäbe</div>
+              <div class="darb-card-sub">Mengen 1–10 · 3,5–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-math" onclick="openDarb('sandpapierzahlen')">
+              <span class="darb-badge themed-badge theme-math">Zahleneinführung</span>
+              <div class="darb-card-title">Sandpapierziffern</div>
+              <div class="darb-card-sub">Ziffernschrift · 3,5–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-math" onclick="openDarb('zahlenstäbe')">
+              <span class="darb-badge themed-badge theme-math">Verbindung</span>
+              <div class="darb-card-title">Spindelbuch</div>
+              <div class="darb-card-sub">Menge & Ziffer · 4–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-math" onclick="openDarb('perlen')">
+              <span class="darb-badge themed-badge theme-math">Dezimalsystem</span>
+              <div class="darb-card-title">Goldenes Perlenmaterial</div>
+              <div class="darb-card-sub">Dekadisches System · 4,5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-math" onclick="openDarb('seguin')">
+              <span class="darb-badge themed-badge theme-math">Zahlenraum</span>
+              <div class="darb-card-title">Seguin-Tafeln (11–99)</div>
+              <div class="darb-card-sub">Zweistellige Zahlen · 5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-math" onclick="openDarb('hundertertafel')">
+              <span class="darb-badge themed-badge theme-math">Zahlenraum</span>
+              <div class="darb-card-title">Hunderter-Tafel</div>
+              <div class="darb-card-sub">Zahlen bis 100 · 5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-math" onclick="openDarb('schlangen')">
+              <span class="darb-badge themed-badge theme-math">Addition</span>
+              <div class="darb-card-title">Schlangen-Spiel</div>
+              <div class="darb-card-sub">Addieren · 5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-math" onclick="openDarb('multiplikation')">
+              <span class="darb-badge themed-badge theme-math">Rechnen</span>
+              <div class="darb-card-title">Multiplikationsbrett</div>
+              <div class="darb-card-sub">Multiplizieren · 5–7 Jahre</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPRACHE -->
+        <div class="shelf-panel" id="panel-spra">
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:1.25rem;">Sprache ist das erste Montessori-Material — von Lautübungen und Sandpapierbuchstaben bis zum spontanen Schreiben und ersten Lesen.</p>
+          <div class="darb-grid">
+            <div class="darb-card themed theme-spra" onclick="openDarb('i_spy')">
+              <span class="darb-badge themed-badge theme-spra">Phonologisch</span>
+              <div class="darb-card-title">Ich sehe etwas… (I Spy)</div>
+              <div class="darb-card-sub">Lautbewusstsein · 3–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-spra" onclick="openDarb('sandpapierbuchst')">
+              <span class="darb-badge themed-badge theme-spra">Buchstaben</span>
+              <div class="darb-card-title">Sandpapierbuchstaben</div>
+              <div class="darb-card-sub">Laut-Buchstabe · 4–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-spra" onclick="openDarb('grosses_alphabet')">
+              <span class="darb-badge themed-badge theme-spra">Schreiben</span>
+              <div class="darb-card-title">Großes Bewegliches Alphabet</div>
+              <div class="darb-card-sub">Erstes Schreiben · 4,5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-spra" onclick="openDarb('lesekaestchen')">
+              <span class="darb-badge themed-badge theme-spra">Lesen</span>
+              <div class="darb-card-title">Erstes Lesekästchen</div>
+              <div class="darb-card-sub">Phonetisches Lesen · 5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-spra" onclick="openDarb('befehle')">
+              <span class="darb-badge themed-badge theme-spra">Lesen</span>
+              <div class="darb-card-title">Befehlkärtchen</div>
+              <div class="darb-card-sub">Leseverständnis · 5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-spra" onclick="openDarb('metall_einlagen')">
+              <span class="darb-badge themed-badge theme-spra">Schreiben</span>
+              <div class="darb-card-title">Metallene Einlagen</div>
+              <div class="darb-card-sub">Schreibvorbereitung · 3,5–5 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-spra" onclick="openDarb('nomenkasten')">
+              <span class="darb-badge themed-badge theme-spra">Grammatik</span>
+              <div class="darb-card-title">Nomenkasten</div>
+              <div class="darb-card-sub">Wortarten · 5–6 Jahre</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KOSMIK -->
+        <div class="shelf-panel" id="panel-kosm">
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:1.25rem;">Kosmische Erziehung gibt Kindern ein Gefühl für ihr Platz im Universum — Natur, Geschichte, Kulturen, Zeit und Zusammenhänge.</p>
+          <div class="darb-grid">
+            <div class="darb-card themed theme-kosm" onclick="openDarb('puzzle_welt')">
+              <span class="darb-badge themed-badge theme-kosm">Geographie</span>
+              <div class="darb-card-title">Puzzle-Weltkarte</div>
+              <div class="darb-card-sub">Kontinente · 3–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-kosm" onclick="openDarb('flaggen')">
+              <span class="darb-badge themed-badge theme-kosm">Geographie</span>
+              <div class="darb-card-title">Flaggen der Welt</div>
+              <div class="darb-card-sub">Kulturen · 4–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-kosm" onclick="openDarb('jahreszeiten')">
+              <span class="darb-badge themed-badge theme-kosm">Natur & Zeit</span>
+              <div class="darb-card-title">Jahreszeiten-Kreis</div>
+              <div class="darb-card-sub">Zeit & Natur · 3–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-kosm" onclick="openDarb('pflanzenteile')">
+              <span class="darb-badge themed-badge theme-kosm">Botanik</span>
+              <div class="darb-card-title">Pflanzenteile</div>
+              <div class="darb-card-sub">Nomenklaturkarten · 4–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-kosm" onclick="openDarb('tierklassen')">
+              <span class="darb-badge themed-badge theme-kosm">Zoologie</span>
+              <div class="darb-card-title">Tierklassen-Sortierung</div>
+              <div class="darb-card-sub">Tiere · 4–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-kosm" onclick="openDarb('zeitleiste')">
+              <span class="darb-badge themed-badge theme-kosm">Geschichte</span>
+              <div class="darb-card-title">Zeitleiste der Erde</div>
+              <div class="darb-card-sub">Erdgeschichte · 5–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-kosm" onclick="openDarb('aggregat')">
+              <span class="darb-badge themed-badge theme-kosm">Physik</span>
+              <div class="darb-card-title">Aggregatzustände Wasser</div>
+              <div class="darb-card-sub">Naturwissenschaft · 4–6 Jahre</div>
+            </div>
+            <div class="darb-card themed theme-kosm" onclick="openDarb('magnetismus')">
+              <span class="darb-badge themed-badge theme-kosm">Physik</span>
+              <div class="darb-card-title">Magnetismus-Experiment</div>
+              <div class="darb-card-sub">Naturwissenschaft · 4–6 Jahre</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAGESABLAUF -->
+<section id="tagesablauf">
+  <div class="section">
+    <div style="display:grid; gap:2rem; grid-template-columns: 1fr 1fr;">
+      <div>
+        <div class="section-header">
+          <p class="section-eyebrow">Strukturierung</p>
+          <h2>Montessori-Tagesablauf</h2>
+          <p>Ein idealtypischer Tagesrahmen — die Freiarbeitszeit bildet das unantastbare Herzstück.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-time">07:00 – 08:00</div>
+            <div class="timeline-title">Ankommen & Freispiel</div>
+            <div class="timeline-desc">Kinder kommen an, kommen zur Ruhe, erste freie Tätigkeit</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">08:00 – 11:30</div>
+            <div class="timeline-title">🌟 Freiarbeitszeit (ungestört)</div>
+            <div class="timeline-desc">Kernzeit der Montessori-Pädagogik — keine Pflichtangebote, keine Unterbrechungen. Pädagogin beobachtet, begleitet und bietet Darbietungen an.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">11:30 – 12:00</div>
+            <div class="timeline-title">Aufräumen & Übergang</div>
+            <div class="timeline-desc">Gemeinsames Aufräumen, Tisch decken als Übung des praktischen Lebens</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">12:00 – 12:45</div>
+            <div class="timeline-title">Mittagessen</div>
+            <div class="timeline-desc">Kinder schütten, servieren und decken selbst — Mahlzeit als Gemeinschaftsmoment</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">12:45 – 13:30</div>
+            <div class="timeline-title">Ruhezeit / Mittagsschlaf</div>
+            <div class="timeline-desc">Freie Wahl: schlafen, ruhen oder ruhige Beschäftigung</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">13:30 – 15:00</div>
+            <div class="timeline-title">Kreis / Projekte / Garten</div>
+            <div class="timeline-desc">Morgen- oder Nachmittagskreis, Projektarbeit, Außengelände</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">15:00 – 17:00</div>
+            <div class="timeline-title">Abholzeit & Freispiel</div>
+            <div class="timeline-desc">Elterngespräche, Dokumentation, Abholsituation</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-header">
+          <p class="section-eyebrow">Grundsätze</p>
+          <h2>Bayerischer Bildungs- &amp; Erziehungsplan</h2>
+          <p>Montessori-Pädagogik im Kontext des BEP Bayern — Verbindungen und Schwerpunkte.</p>
+        </div>
+
+        <div class="bay-banner">
+          <div class="bay-flag">🏔</div>
+          <div class="bay-text">
+            <h3>BayKiBiG & BEP Bayern</h3>
+            <p>Gesetzliche Grundlagen und Bildungsziele für bayerische Kindertageseinrichtungen</p>
+          </div>
+          <div class="bay-links">
+            <a class="bay-link" href="https://www.ifp.bayern.de/projekte/bildung/bildungsplan.php" target="_blank">BEP Online</a>
+            <a class="bay-link" href="https://www.gesetze-bayern.de/Content/Document/BayKiBiG" target="_blank">BayKiBiG</a>
+          </div>
+        </div>
+
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <button class="accordion-header">
+            Stärkung der Basiskompetenzen
+            <span class="accordion-chevron">⌄</span>
+          </button>
+          <div class="accordion-body">
+            Der BEP nennt Selbstkompetenz, Sozialkompetenz, Sachkompetenz und lernmethodische Kompetenz als Basis. Montessori-Materialien sind so gestaltet, dass sie genau diese Bereiche durch Selbsttätigkeit stärken — Kinder regulieren, planen und evaluieren ihre Arbeit eigenständig.
+          </div>
+        </div>
+
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <button class="accordion-header">
+            Beobachtung & Dokumentation
+            <span class="accordion-chevron">⌄</span>
+          </button>
+          <div class="accordion-body">
+            Sowohl BEP als auch Montessori-Pädagogik betonen die systematische Beobachtung als Grundlage des pädagogischen Handelns. Portfolio, Entwicklungsgespräche und Beobachtungsbögen (z.B. BESK kompakt) greifen nahtlos in den Montessori-Alltag ein.
+          </div>
+        </div>
+
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <button class="accordion-header">
+            Bildungsbereiche im Überblick
+            <span class="accordion-chevron">⌄</span>
+          </button>
+          <div class="accordion-body">
+            Sprache & Literacy, Mathematik, Naturwissenschaften & Technik, Informations- und Kommunikationstechnik, Ästhetik & Kunst, Musik, Bewegung, Gesundheit, Werte & Religionen, Emotionalität & soziale Beziehungen — alle 13 Bildungsbereiche des BEP finden im Montessori-Material ihre Entsprechung.
+          </div>
+        </div>
+
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <button class="accordion-header">
+            Elternpartnerschaft & Übergänge
+            <span class="accordion-chevron">⌄</span>
+          </button>
+          <div class="accordion-body">
+            Entwicklungsgespräche, Hospitationen und Elternabende sind gesetzlich verankert und pädagogisch wertvoll. Montessori-Einrichtungen bieten häufig „Materialpräsentationen" für Eltern an, um Transparenz über die Arbeitsweise zu schaffen. Übergangsmanagement (Krippe → Kita → Schule) braucht besondere Aufmerksamkeit.
+          </div>
+        </div>
+
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <button class="accordion-header">
+            Inklusion & Schutzauftrag
+            <span class="accordion-chevron">⌄</span>
+          </button>
+          <div class="accordion-body">
+            § 8a SGB VIII (Kinderschutz), Inklusion nach UN-BRK und Integration von Kindern mit besonderem Förderbedarf sind zentrale Themen. Montessori-Materialien ermöglichen durch ihre Selbstdifferenzierung oft inklusives Arbeiten ohne Sondermaßnahmen.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KREISGESTALTUNG -->
+<section id="kreis" class="section-divider">
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Kreisgestaltung</p>
+      <h2>Ideen für den Morgen- und Abschlusskreis</h2>
+      <p>Strukturierte und freie Kreisideen für alle Jahreszeiten, Themen und Gruppenstärken.</p>
+    </div>
+
+    <div class="kreis-grid">
+      <div class="kreis-card" onclick="openModal('kreis_begruessung')">
+        <div class="kreis-card-top">
+          <div class="kreis-emoji">☀️</div>
+          <div class="kreis-card-body">
+            <div class="kreis-card-title">Begrüßungsrituale</div>
+            <div class="kreis-card-desc">Kalender, Wetter, Wochentage, Namenslieder — Orientierung im Tag</div>
+          </div>
+        </div>
+        <div class="kreis-card-footer">
+          <span>Morgenkreis · täglich</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="kreis-card" onclick="openModal('kreis_jahreszeit')">
+        <div class="kreis-card-top">
+          <div class="kreis-emoji">🍂</div>
+          <div class="kreis-card-body">
+            <div class="kreis-card-title">Jahreszeitenkreis</div>
+            <div class="kreis-card-desc">Naturmaterialien, Jahresring, saisonale Lieder und Gedichte</div>
+          </div>
+        </div>
+        <div class="kreis-card-footer">
+          <span>Alle Jahreszeiten</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="kreis-card" onclick="openModal('kreis_bewegung')">
+        <div class="kreis-card-top">
+          <div class="kreis-emoji">🕺</div>
+          <div class="kreis-card-body">
+            <div class="kreis-card-title">Bewegungskreis</div>
+            <div class="kreis-card-desc">Tanzlieder, Finger- und Singspiele, Rhythmusübungen</div>
+          </div>
+        </div>
+        <div class="kreis-card-footer">
+          <span>Ganzjährig · 15–25 min</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="kreis-card" onclick="openModal('kreis_stille')">
+        <div class="kreis-card-top">
+          <div class="kreis-emoji">🕯️</div>
+          <div class="kreis-card-body">
+            <div class="kreis-card-title">Stilleübungen</div>
+            <div class="kreis-card-desc">Die Montessori-Stilleübung als besonderer Kreis — Atemübungen, Lauschen, Körperwahrnehmung</div>
+          </div>
+        </div>
+        <div class="kreis-card-footer">
+          <span>Montessori-spezifisch</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="kreis-card" onclick="openModal('kreis_geschichten')">
+        <div class="kreis-card-top">
+          <div class="kreis-emoji">📖</div>
+          <div class="kreis-card-body">
+            <div class="kreis-card-title">Geschichten & Vorlesen</div>
+            <div class="kreis-card-desc">Kinderbuchempfehlungen, Kamishibai-Ideen, freies Erzählen</div>
+          </div>
+        </div>
+        <div class="kreis-card-footer">
+          <span>Sprache & Literacy</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="kreis-card" onclick="openModal('kreis_abschluss')">
+        <div class="kreis-card-top">
+          <div class="kreis-emoji">🌙</div>
+          <div class="kreis-card-body">
+            <div class="kreis-card-title">Abschlusskreis & Verabschiedung</div>
+            <div class="kreis-card-desc">Tagesrückblick, Abschiedsrituale, was war heute schön?</div>
+          </div>
+        </div>
+        <div class="kreis-card-footer">
+          <span>Tagesabschluss</span>
+          <span>→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BASTELN & LIEDER -->
+<section id="basteln">
+  <div class="section">
+    <div style="display:grid; gap:3rem; grid-template-columns: 1fr 1fr;">
+
+      <!-- BASTELN -->
+      <div>
+        <div class="section-header">
+          <p class="section-eyebrow">Kreativangebote</p>
+          <h2>Basteln & Gestalten</h2>
+          <p>Saisonale und jahreszeitliche Bastelangebote mit Materiallisten.</p>
+        </div>
+
+        <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));">
+          <div class="bastel-card" onclick="openModal('bastel_herbst')">
+            <div class="bastel-thumb" style="background:#F5E6C8;">🍁</div>
+            <div class="bastel-body">
+              <div class="bastel-age">Ab 3 Jahren · Herbst</div>
+              <div class="bastel-title">Blätter-Abdrücke</div>
+              <div class="bastel-desc">Naturfarben & Fingerfarbe</div>
+            </div>
+          </div>
+          <div class="bastel-card" onclick="openModal('bastel_laterne')">
+            <div class="bastel-thumb" style="background:#FEF3C7;">🏮</div>
+            <div class="bastel-body">
+              <div class="bastel-age">Ab 3 Jahren · Oktober</div>
+              <div class="bastel-title">St.-Martins-Laterne</div>
+              <div class="bastel-desc">Transparentpapier & Holzstab</div>
+            </div>
+          </div>
+          <div class="bastel-card" onclick="openModal('bastel_advent')">
+            <div class="bastel-thumb" style="background:#DBEAFE;">⭐</div>
+            <div class="bastel-body">
+              <div class="bastel-age">Ab 4 Jahren · Advent</div>
+              <div class="bastel-title">Stern aus Strohhalmen</div>
+              <div class="bastel-desc">Strohhalme, Faden, Washi-Tape</div>
+            </div>
+          </div>
+          <div class="bastel-card" onclick="openModal('bastel_winter')">
+            <div class="bastel-thumb" style="background:#E0F2FE;">❄️</div>
+            <div class="bastel-body">
+              <div class="bastel-age">Ab 3 Jahren · Winter</div>
+              <div class="bastel-title">Schneeflocken falten</div>
+              <div class="bastel-desc">Papier & Schere</div>
+            </div>
+          </div>
+          <div class="bastel-card" onclick="openModal('bastel_ostern')">
+            <div class="bastel-thumb" style="background:#DCFCE7;">🥚</div>
+            <div class="bastel-body">
+              <div class="bastel-age">Ab 3 Jahren · Frühling</div>
+              <div class="bastel-title">Ostereier batiken</div>
+              <div class="bastel-desc">Ausgeblasene Eier, Wachskreide</div>
+            </div>
+          </div>
+          <div class="bastel-card" onclick="openModal('bastel_sommer')">
+            <div class="bastel-thumb" style="background:#FEF9C3;">🌻</div>
+            <div class="bastel-body">
+              <div class="bastel-age">Ab 3 Jahren · Sommer</div>
+              <div class="bastel-title">Sonnenblumen-Collage</div>
+              <div class="bastel-desc">Naturmaterialien & Leim</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIEDER -->
+      <div>
+        <div class="section-header">
+          <p class="section-eyebrow">Musik & Rhythmus</p>
+          <h2>Lieder für den Kita-Alltag</h2>
+          <p>Jahreslieder, Bewegungslieder und Rituale für den Kreis.</p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div class="lied-card">
+            <div class="lied-card-top">
+              <div>
+                <h3>Der Herbstwind hat ein Lied erdacht</h3>
+                <p>Melodie & Text: Traditionell | Stimme & Bewegung</p>
+              </div>
+              <span class="lied-season" style="background:var(--amber-pale); color:var(--amber);">Herbst</span>
+            </div>
+            <div class="lied-strophe">
+              Der Herbstwind hat ein Lied erdacht,<br>
+              er hat's den Blättern beigebracht…<br>
+              die tanzen jetzt und drehen sich,<br>
+              mal so und so, ganz wunderlich.
+            </div>
+          </div>
+
+          <div class="lied-card">
+            <div class="lied-card-top">
+              <div>
+                <h3>Schneeflöckchen, Weißröckchen</h3>
+                <p>Traditionelles Winterlied | Alle Stimmen</p>
+              </div>
+              <span class="lied-season" style="background:var(--sky-pale); color:var(--sky);">Winter</span>
+            </div>
+            <div class="lied-strophe">
+              Schneeflöckchen, Weißröckchen,<br>
+              wann kommst du geschneit?<br>
+              Du wohnst in den Wolken,<br>
+              dein Weg ist so weit…
+            </div>
+          </div>
+
+          <div class="lied-card">
+            <div class="lied-card-top">
+              <div>
+                <h3>Summ, summ, summ — Bienchen summ herum</h3>
+                <p>Frühlingsklassiker | Fingerspiel möglich</p>
+              </div>
+              <span class="lied-season" style="background:#DCFCE7; color:#3E6B20;">Frühling</span>
+            </div>
+            <div class="lied-strophe">
+              Summ, summ, summ,<br>
+              Bienchen summ herum!<br>
+              Ei, wir tun dir nichts zuleide,<br>
+              flieg nur aus auf grüne Heide…
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM & AZUBI -->
+<section id="team" class="section-divider">
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Teamarbeit & Führung</p>
+      <h2>Teambildung, Azubi-Anleitung &amp; Konzeptarbeit</h2>
+      <p>Praxisnahe Hilfen für Gruppenleitung und Stellvertretung — von der Anleitungsdokumentation bis zur Teambesprechung.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-icon-wrap" style="background:var(--cream-deep);">👩‍🏫</div>
+          <h3>Azubi-Anleitung</h3>
+        </div>
+        <p>Strukturierte Anleitergespräche, Beurteilungsbögen und Reflexionsfragen für die praktische Ausbildung von Kinderpflegerinnen und Erziehern im Montessori-Kontext.</p>
+        <div class="team-links">
+          <button class="team-link" onclick="openModal('azubi_erstgespraech')">
+            <span class="team-link-icon">📋</span> Erstgespräch-Leitfaden
+          </button>
+          <button class="team-link" onclick="openModal('azubi_reflexion')">
+            <span class="team-link-icon">🔄</span> Reflexionsfragen Praktikum
+          </button>
+          <button class="team-link" onclick="openModal('azubi_beurteilung')">
+            <span class="team-link-icon">⭐</span> Beurteilungsvorlage
+          </button>
+          <button class="team-link" onclick="openModal('azubi_montessori')">
+            <span class="team-link-icon">🌿</span> Montessori-Einführung für Azubis
+          </button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-icon-wrap" style="background:var(--cream-deep);">👥</div>
+          <h3>Teambesprechungen</h3>
+        </div>
+        <p>Moderationsvorlagen, Tagesordnungen und Dokumentationsbögen für effektive Teamgespräche — mit besonderem Fokus auf pädagogische Reflexion im Montessori-Alltag.</p>
+        <div class="team-links">
+          <button class="team-link" onclick="openModal('team_agenda')">
+            <span class="team-link-icon">📝</span> Tagesordnung Vorlage
+          </button>
+          <button class="team-link" onclick="openModal('team_protokoll')">
+            <span class="team-link-icon">📄</span> Protokollbogen
+          </button>
+          <button class="team-link" onclick="openModal('team_konflikt')">
+            <span class="team-link-icon">🤝</span> Umgang mit Konflikten im Team
+          </button>
+          <button class="team-link" onclick="openModal('team_kaizen')">
+            <span class="team-link-icon">💡</span> Qualitätsentwicklung (PDCA)
+          </button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-icon-wrap" style="background:var(--cream-deep);">🧒</div>
+          <h3>Elternkommunikation</h3>
+        </div>
+        <p>Vorlagen für Entwicklungsgespräche, Elternbriefe und Informationsabende — dsgvo-bewusst und klar strukturiert.</p>
+        <div class="team-links">
+          <button class="team-link" onclick="openModal('eltern_entwicklung')">
+            <span class="team-link-icon">💬</span> Entwicklungsgespräch Leitfaden
+          </button>
+          <button class="team-link" onclick="openModal('eltern_brief')">
+            <span class="team-link-icon">✉️</span> Elternbrief-Vorlagen
+          </button>
+          <button class="team-link" onclick="openModal('eltern_hospitation')">
+            <span class="team-link-icon">👀</span> Hospitationsregeln
+          </button>
+          <button class="team-link" onclick="openModal('eltern_datenschutz')">
+            <span class="team-link-icon">🔒</span> Datenschutz & KI-Nutzung
+          </button>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-icon-wrap" style="background:var(--cream-deep);">📊</div>
+          <h3>Beobachtung & Portfolio</h3>
+        </div>
+        <p>Professionelle Beobachtungsbögen, Portfolio-Strukturen und Lerngeschichten im Montessori-Kontext — kompatibel mit bayerischen Dokumentationsanforderungen.</p>
+        <div class="team-links">
+          <button class="team-link" onclick="openModal('beob_bogen')">
+            <span class="team-link-icon">🔭</span> Freie Beobachtung (30 min)
+          </button>
+          <button class="team-link" onclick="openModal('beob_besk')">
+            <span class="team-link-icon">📋</span> BESK kompakt Hinweise
+          </button>
+          <button class="team-link" onclick="openModal('beob_portfolio')">
+            <span class="team-link-icon">📁</span> Portfolio-Aufbau
+          </button>
+          <button class="team-link" onclick="openModal('beob_lerngesch')">
+            <span class="team-link-icon">📖</span> Lerngeschichten schreiben
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARE -->
+<section id="formulare">
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Bürokratie & Vorlagen</p>
+      <h2>Formulare für Bayern</h2>
+      <p>Amtliche Vorlagen, Eigenentwicklungen und Linksammlungen für Kindertageseinrichtungen in Bayern.</p>
+    </div>
+
+    <div class="bay-banner">
+      <div class="bay-flag">🏔</div>
+      <div class="bay-text">
+        <h3>Bayerische Behörden & Ressourcen</h3>
+        <p>Links zu StMAS, IFP Bayern, Jugendamt und weiteren offiziellen Stellen</p>
+      </div>
+      <div class="bay-links">
+        <a class="bay-link" href="https://www.stmas.bayern.de/kindertagesbetreuung/" target="_blank">StMAS</a>
+        <a class="bay-link" href="https://www.ifp.bayern.de" target="_blank">IFP Bayern</a>
+        <a class="bay-link" href="https://www.stmgp.bayern.de" target="_blank">Gesundheitsministerium</a>
+      </div>
+    </div>
+
+    <div style="background:var(--white); border:1px solid var(--sand); border-radius:var(--radius-lg); overflow:hidden;">
+      <table class="formular-table">
+        <thead>
+          <tr>
+            <th>Formular / Vorlage</th>
+            <th>Bereich</th>
+            <th>Format</th>
+            <th>Hinweis</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:var(--forest)">Beobachtungsbogen Freie Situation</strong><br><span style="font-size:12px;color:var(--text-light)">Strukturierte 30-Minuten-Beobachtung</span></td>
+            <td><span class="f-badge f-badge-bay">Pädagogik</span></td>
+            <td><span class="f-badge f-badge-word">Word</span></td>
+            <td>Eigene Vorlage</td>
+            <td><button class="dl-btn" onclick="openModal('dl_beob')">⤓ Vorlage</button></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--forest)">Entwicklungsgespräch Dokumentation</strong><br><span style="font-size:12px;color:var(--text-light)">Für Elterngespräche mit Protokoll</span></td>
+            <td><span class="f-badge f-badge-bay">Elternarbeit</span></td>
+            <td><span class="f-badge f-badge-word">Word</span></td>
+            <td>DSGVO-konform</td>
+            <td><button class="dl-btn" onclick="openModal('dl_entw')">⤓ Vorlage</button></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--forest)">Unfallmeldung Bayern</strong><br><span style="font-size:12px;color:var(--text-light)">Meldebogen GUV/KUVB</span></td>
+            <td><span class="f-badge f-badge-new">Pflicht</span></td>
+            <td><span class="f-badge f-badge-pdf">PDF</span></td>
+            <td>Amtlich / KUVB</td>
+            <td><a class="dl-btn" href="https://www.kuvb.de" target="_blank">⤓ Extern</a></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--forest)">Anmeldebogen Kind</strong><br><span style="font-size:12px;color:var(--text-light)">Aufnahmeunterlagen für neue Familien</span></td>
+            <td><span class="f-badge f-badge-bay">Aufnahme</span></td>
+            <td><span class="f-badge f-badge-word">Word</span></td>
+            <td>Anpassbar</td>
+            <td><button class="dl-btn" onclick="openModal('dl_anmeld')">⤓ Vorlage</button></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--forest)">Frühförderstelle Weitervermittlungsbogen</strong><br><span style="font-size:12px;color:var(--text-light)">Für Überweisung an Frühförderstellen</span></td>
+            <td><span class="f-badge f-badge-new">Förderung</span></td>
+            <td><span class="f-badge f-badge-word">Word</span></td>
+            <td>Platzhalter-Version</td>
+            <td><button class="dl-btn" onclick="openModal('dl_frueh')">⤓ Vorlage</button></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--forest)">Azubi-Anleitungsbogen</strong><br><span style="font-size:12px;color:var(--text-light)">Quartals-Gespräch & Beurteilung</span></td>
+            <td><span class="f-badge f-badge-bay">Ausbildung</span></td>
+            <td><span class="f-badge f-badge-word">Word</span></td>
+            <td>Eigene Vorlage</td>
+            <td><button class="dl-btn" onclick="openModal('dl_azubi')">⤓ Vorlage</button></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--forest)">Teambesprechungsprotokoll</strong><br><span style="font-size:12px;color:var(--text-light)">Strukturierte Protokollvorlage</span></td>
+            <td><span class="f-badge f-badge-bay">Team</span></td>
+            <td><span class="f-badge f-badge-word">Word</span></td>
+            <td>Eigene Vorlage</td>
+            <td><button class="dl-btn" onclick="openModal('dl_team')">⤓ Vorlage</button></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--forest)">Zuverlässigkeitsüberprüfung (§72a SGB VIII)</strong><br><span style="font-size:12px;color:var(--text-light)">Erweitertes Führungszeugnis, Belehrung</span></td>
+            <td><span class="f-badge f-badge-new">Pflicht</span></td>
+            <td><span class="f-badge f-badge-pdf">PDF</span></td>
+            <td>Jugendamtsvorgabe</td>
+            <td><button class="dl-btn" onclick="openModal('dl_fuehr')">⤓ Info</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Montessori<span>Werk</span></div>
+    <div class="footer-tagline">Freies Portal für Pädagoginnen und Pädagogen · Bayern · Kostenlos</div>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Darbietungen</h4>
+        <a href="#darbietungen">Praktisches Leben</a>
+        <a href="#darbietungen">Sinnesmaterial</a>
+        <a href="#darbietungen">Mathematik</a>
+        <a href="#darbietungen">Sprache</a>
+        <a href="#darbietungen">Kosmische Erziehung</a>
+      </div>
+      <div class="footer-col">
+        <h4>Pädagogik</h4>
+        <a href="#montessori">Grundlagen Montessori</a>
+        <a href="#tagesablauf">Tagesablauf</a>
+        <a href="#tagesablauf">BEP Bayern</a>
+        <a href="#kreis">Kreisgestaltung</a>
+      </div>
+      <div class="footer-col">
+        <h4>Praxis</h4>
+        <a href="#basteln">Basteln & Gestalten</a>
+        <a href="#basteln">Lieder & Musik</a>
+        <a href="#team">Azubi-Anleitung</a>
+        <a href="#team">Elternarbeit</a>
+      </div>
+      <div class="footer-col">
+        <h4>Formulare</h4>
+        <a href="#formulare">Bayern (BayKiBiG)</a>
+        <a href="#formulare">Beobachtung</a>
+        <a href="#formulare">Dokumentation</a>
+        <a href="https://www.ifp.bayern.de" target="_blank">IFP Bayern →</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 MontessoriWerk · Kostenlos für alle Pädagoginnen und Pädagogen</span>
+      <span>Kein kommerzielles Angebot · Alle Inhalte zur freien Verwendung</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const modalData = {
+  polarisation: {
+    title: 'Polarisation der Aufmerksamkeit',
+    sub: 'Beobachtungsgrundlage der Montessori-Pädagogik',
+    body: `
+      <div class="modal-section">
+        <h4>Was ist Polarisation?</h4>
+        <p>Maria Montessori beobachtete, dass Kinder, wenn sie die richtige Umgebung und das passende Material finden, in einen Zustand tiefer, gleichmäßiger Konzentration eintreten. Sie nannte dies die "Polarisation der Aufmerksamkeit" — den Moment, in dem Wille und Intelligenz eines Kindes völlig auf eine Tätigkeit ausgerichtet sind.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Erkennungsmerkmale</h4>
+        <ul class="info-list">
+          <li>Spontane Wiederholung einer Tätigkeit ohne äußere Aufforderung</li>
+          <li>Kind ist für äußere Ablenkungen unempfänglich</li>
+          <li>Nach der Arbeit wirkt das Kind ruhig, ausgeglichen, zufrieden</li>
+          <li>Keine Erschöpfung — eher Energie und Lebhaftigkeit nach dem Aufhören</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h4>Pädagogische Konsequenz</h4>
+        <p>Sobald ein Kind diesen Zustand erreicht hat, darf die Pädagogin auf keinen Fall eingreifen — auch wenn das Kind scheinbar etwas "falsch" macht oder das Material nicht normgerecht verwendet. Beobachten statt eingreifen.</p>
+      </div>`
+  },
+  sensibel: {
+    title: 'Sensible Phasen nach Montessori',
+    sub: 'Zeitfenster erhöhter Lernbereitschaft',
+    body: `
+      <div class="modal-section">
+        <h4>Was sind sensible Phasen?</h4>
+        <p>Montessori übernahm den Begriff von dem Biologen Hugo de Vries. Sensible Phasen sind vorübergehende Zeiträume erhöhter Empfänglichkeit, in denen das Kind besonders leicht bestimmte Fähigkeiten erwirbt. Verpasst das Kind diese Phase, ist das Lernen zwar nicht unmöglich, aber anstrengender.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Die wichtigsten Phasen (0–6 Jahre)</h4>
+        <ul class="info-list">
+          <li><strong>Ordnungssinn</strong> (ca. 1,5–3 Jahre): Kinder reagieren auf Unordnung mit Verwirrung und Stress. Rituale und Strukturen geben Sicherheit.</li>
+          <li><strong>Sprache</strong> (Geburt bis ca. 6 Jahre): Die Muttersprache wird mühelos und vollständig erworben — inklusive Grammatik.</li>
+          <li><strong>Sinnesverfeinern</strong> (ca. 2,5–6 Jahre): Kinder sind hochempfänglich für sensorische Details und Unterschiede.</li>
+          <li><strong>Bewegung</strong> (ca. 1–4 Jahre): Koordination, Gleichgewicht, Feinmotorik entwickeln sich intensiv.</li>
+          <li><strong>Kleine Dinge</strong> (ca. 1–3 Jahre): Faszination für Details und Kleinigkeiten, die Erwachsene übersehen.</li>
+          <li><strong>Soziales Leben</strong> (ca. 2,5–6 Jahre): Interesse an Gemeinschaft, Normen und Umgangsformen wächst.</li>
+        </ul>
+      </div>`
+  },
+  umgebung: {
+    title: 'Die vorbereitete Umgebung',
+    sub: 'Der Raum als dritter Erzieher',
+    body: `
+      <div class="modal-section">
+        <h4>Grundprinzipien</h4>
+        <p>Die Umgebung soll dem Kind ermöglichen, sich selbst zu bilden, ohne dauerhaft auf Hilfe der Erzieherin angewiesen zu sein. Sie ist auf das Kind, nicht auf den Erwachsenen ausgerichtet.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Gestaltungsmerkmale</h4>
+        <ul class="info-list">
+          <li>Alles in Kinderhöhe — Regale, Wasserquelle, Spiegel</li>
+          <li>Material vollständig, unbeschädigt und ordentlich präsentiert</li>
+          <li>Pro Material gibt es genau ein Exemplar (Konfliktlösung als Lernfeld)</li>
+          <li>Ästhetik und Natürlichkeit — echte Materialien statt Plastik</li>
+          <li>Arbeitsmatten als persönlicher Arbeitsraum</li>
+          <li>Klare Struktur der Bereiche (Praktisches Leben, Sinne, Mathematik, Sprache, Kosmik)</li>
+        </ul>
+      </div>`
+  },
+  rolle: {
+    title: 'Die Rolle der Erzieherin',
+    sub: 'Beobachten, vorbereiten, zurückhalten',
+    body: `
+      <div class="modal-section">
+        <h4>Vom Lehren zum Begleiten</h4>
+        <p>Die größte Herausforderung der Montessori-Pädagogin ist es, zurückzuhalten — auch wenn man helfen könnte. „Hilf mir, es selbst zu tun" bedeutet, dass das Kind spürt: Ich werde getraut, und ich werde begleitet.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Die drei Aufgaben</h4>
+        <ol class="step-list">
+          <li>Die Umgebung vorbereiten und pflegen — täglich, bevor die Kinder ankommen</li>
+          <li>Beobachten — systematisch, ohne zu urteilen, um die Entwicklung zu verstehen</li>
+          <li>Die Verbindung herstellen — Kind zum richtigen Material zum richtigen Zeitpunkt führen (Darbietung)</li>
+        </ol>
+      </div>
+      <div class="modal-section">
+        <h4>Innere Haltung</h4>
+        <p>Montessori sprach von einer fast spirituellen Haltung: Demut gegenüber dem Kind, Geduld, Aufmerksamkeit und echter Respekt vor der Entwicklung des Kindes als innerer, eigengesteurter Prozess.</p>
+      </div>`
+  },
+  freiarbeit: {
+    title: 'Die Freiarbeitszeit',
+    sub: 'Das ungestörte Herzstück des Montessori-Tages',
+    body: `
+      <div class="modal-section">
+        <h4>Mindestdauer und Qualität</h4>
+        <p>Montessori-Expertinnen empfehlen mindestens 3 Stunden ununterbrochene Freiarbeitszeit täglich. Diese Zeit darf nicht durch Pflichtangebote, Morgenkreis oder Essen unterbrochen werden — denn echte Konzentration braucht Zeit, um entstehen zu können.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Freie Wahl als Grundrecht</h4>
+        <p>Das Kind wählt selbst: Material, Arbeitsplatz (Tisch oder Matte), Arbeitsdauer und ob es allein oder mit einem anderen Kind arbeitet. Die Pädagogin macht keine Vorschläge, außer sie beobachtet, dass ein Kind stockt oder ein neues Material angeboten werden könnte.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Was die Pädagogin in dieser Zeit tut</h4>
+        <ul class="info-list">
+          <li>Beobachtet — systematisch und notiert</li>
+          <li>Bietet Darbietungen an (individuell oder in kleinen Gruppen)</li>
+          <li>Hält die Umgebung in Ordnung</li>
+          <li>Schreitet bei Konflikten ein — möglichst minimal</li>
+        </ul>
+      </div>`
+  },
+  material: {
+    title: 'Das Montessori-Material',
+    sub: 'Didaktisch durchdacht, selbstkorrigierend, einladend',
+    body: `
+      <div class="modal-section">
+        <h4>Grundprinzipien des Materials</h4>
+        <ul class="info-list">
+          <li><strong>Fehlerquelle im Material:</strong> Das Material zeigt selbst, ob die Aufgabe gelöst ist — kein Erwachsener muss korrigieren</li>
+          <li><strong>Isolation einer Eigenschaft:</strong> Jedes Material befasst sich mit genau einer Eigenschaft (Größe, Farbe, Gewicht…)</li>
+          <li><strong>Ästhetik:</strong> Schöne, natürliche Materialien laden zur Arbeit ein</li>
+          <li><strong>Vollständigkeit:</strong> Jedes Set ist immer vollständig — fehlende Teile müssen sofort ersetzt werden</li>
+          <li><strong>Einmaligkeit:</strong> Pro Gruppe gibt es jedes Material nur einmal</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h4>Materialfolge</h4>
+        <p>Materialien bauen aufeinander auf. Der Rosaturm bereitet auf die Braune Treppe vor, beide bereiten auf die Nummerstäbe vor, die auf das Goldene Perlenmaterial führen. Diese innere Logik macht das Montessori-Material einzigartig.</p>
+      </div>`
+  },
+  // Darbietungen
+  schütten: {
+    title: 'Darbietung: Schütten mit zwei Krügen',
+    sub: 'Übungen des praktischen Lebens · Koordination · 3–4 Jahre',
+    body: `
+      <div class="modal-section">
+        <h4>Material</h4>
+        <p>Zwei gleiche kleine Krüge (Keramik oder Metall), ein kleines Tablett, ggf. ein Schwamm. Zum Einstieg: trockene Körner oder Sand, später: Wasser.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Darbietungsschritte</h4>
+        <ol class="step-list">
+          <li>Einladen: „Ich möchte dir etwas zeigen." Material vom Regal holen, auf den Tisch stellen.</li>
+          <li>Einen Krug in die dominante Hand nehmen — langsam, bewusst.</li>
+          <li>Über den zweiten Krug halten, Daumen und Zeigefinger am Ausguss positionieren.</li>
+          <li>Langsam und gleichmäßig einschütten — Inhalt komplett umfüllen.</li>
+          <li>Krug abstellen, den zweiten nehmen, zurückschütten.</li>
+          <li>Material zurückräumen, Kind einladen: „Möchtest du es probieren?"</li>
+        </ol>
+      </div>
+      <div class="modal-section">
+        <h4>Fehlerquelle & Weiterführung</h4>
+        <p>Verschüttetes wird sofort aufgewischt — als Teil der Übung. Nächste Stufe: zwei verschiedene Körner getrennt halten, später Wasser. Weiterführung: Tee eingießen, Milch einschenken beim Frühstück.</p>
+      </div>`
+  },
+  rosa_turm: {
+    title: 'Darbietung: Der Rosa Turm',
+    sub: 'Sinnesmaterial · Dimension · 2,5–5 Jahre',
+    body: `
+      <div class="modal-section">
+        <h4>Material & Vorbereitung</h4>
+        <p>10 rosa Würfel aus Holz, kleinster Würfel 1 cm³, größter 10 cm³. Sie unterscheiden sich in allen drei Dimensionen gleichzeitig. Arbeitsmatte auf dem Boden (Turm wird am Boden gebaut).</p>
+      </div>
+      <div class="modal-section">
+        <h4>Darbietungsschritte</h4>
+        <ol class="step-list">
+          <li>Matte ausrollen, Würfel einzeln vom Regal holen (immer größter zuerst).</li>
+          <li>Würfel zufällig auf der Matte verteilen.</li>
+          <li>Den größten Würfel nehmen, in die Mitte der Matte legen.</li>
+          <li>Mit zwei Händen den nächstgrößeren suchen (visuell vergleichen), draufsetzen.</li>
+          <li>So fortfahren bis zum kleinsten Würfel.</li>
+          <li>Kurz bewundern — dann Turm einzeln wieder auf Matte verteilen, Kind einladen.</li>
+        </ol>
+      </div>
+      <div class="modal-section">
+        <h4>Sprachliche Erweiterung & Fehlerquelle</h4>
+        <p>Fehlerquelle: Der Turm kippt oder „sieht falsch aus" — das Kind erkennt dies selbst. Sprachliche Erweiterung (3-Perioden-Lektion): „groß – größer – am größten". Weiterführung: Vergleich mit Brauner Treppe.</p>
+      </div>`
+  },
+  sandpapierbuchst: {
+    title: 'Darbietung: Sandpapierbuchstaben',
+    sub: 'Sprache · Laut-Buchstabe-Verbindung · 4–5 Jahre',
+    body: `
+      <div class="modal-section">
+        <h4>Vorbereitung & Voraussetzung</h4>
+        <p>Das Kind kennt bereits viele Laute aus dem „Ich-sehe-etwas"-Spiel. Sandpapierbuchstaben sind auf Holztäfelchen aufgeklebt — Vokale auf rot, Konsonanten auf blau (oder Schreibschrift auf grün). Immer nur 2–3 neue Buchstaben pro Sitzung.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Die Drei-Perioden-Lektion</h4>
+        <ol class="step-list">
+          <li><strong>Periode 1 (Benennen):</strong> „Das ist /m/." — Buchstaben mit zwei Fingern nachfahren, dabei Laut sprechen.</li>
+          <li><strong>Periode 2 (Erkennen):</strong> „Zeig mir das /m/." — Kind zeigt und fährt nach.</li>
+          <li><strong>Periode 3 (Abrufen):</strong> Buchstaben hinlegen, Kind fragt: „Was ist das?" — Nur wenn Kind sicher antwortet, neue Buchstaben einführen.</li>
+        </ol>
+      </div>
+      <div class="modal-section">
+        <h4>Wichtige Hinweise</h4>
+        <p>Nur Lautnamen sprechen (nicht „Em" für M, sondern /m/). Immer mit dominanter Hand nachfahren — Schreibrichtung einhalten. Das Nachfahren verbindet taktil-kinästhetischen mit visuellem Eindruck.</p>
+      </div>`
+  },
+  nummerstaebe: {
+    title: 'Darbietung: Nummerstäbe',
+    sub: 'Mathematik · Mengen 1–10 · 3,5–5 Jahre',
+    body: `
+      <div class="modal-section">
+        <h4>Material</h4>
+        <p>10 Stäbe in Rot und Blau abwechselnd lackiert, kürzester 10 cm (= 1), längster 100 cm (= 10). Erinnern an die Roten Stangen aus dem Sinnesmaterial.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Darbietungsschritte</h4>
+        <ol class="step-list">
+          <li>Stäbe in zufälliger Reihenfolge auf der langen Arbeitsmatte auslegen.</li>
+          <li>Kürzesten Stab nehmen, links hinlegen: „Das ist der Stab für Eins."</li>
+          <li>Nächsten nehmen, rechts anlegen: „Das ist der Stab für Zwei." — dabei Abschnitte mit dem Finger zählen.</li>
+          <li>So fortfahren, immer größer werdend.</li>
+          <li>Drei-Perioden-Lektion mit 1, 2, 3 — erst wenn sicher: weitere Zahlen.</li>
+        </ol>
+      </div>
+      <div class="modal-section">
+        <h4>Weiterführung</h4>
+        <p>Stäbe mit Sandpapierziffern kombinieren. Rechenoperationen spielerisch vorbereiten: „Wenn ich den 3er und den 2er zusammenlege, wie lang ist das?" Vorbereitung aufs Goldene Perlenmaterial.</p>
+      </div>`
+  },
+  kreis_begruessung: {
+    title: 'Begrüßungsrituale im Morgenkreis',
+    sub: 'Strukturierung · Orientierung · täglich',
+    body: `
+      <div class="modal-section">
+        <h4>Klassische Elemente</h4>
+        <ul class="info-list">
+          <li><strong>Namensrunde:</strong> Jedes Kind wird namentlich begrüßt (Lied oder Klatschspiel)</li>
+          <li><strong>Kalender:</strong> Wochentag, Datum, Monat gemeinsam bestimmen — Kind darf zeigen</li>
+          <li><strong>Wetter:</strong> Wetterkind schaut aus dem Fenster, beschreibt, Symbol auswählen</li>
+          <li><strong>Anwesenheit:</strong> Wer fehlt heute? — Soziale Aufmerksamkeit fördern</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h4>Beispiel-Begrüßungslied</h4>
+        <div class="lied-strophe">
+          Guten Morgen, guten Morgen,<br>
+          [Name], wie geht es dir?<br>
+          Guten Morgen, guten Morgen,<br>
+          Schön, dass du heute hier!
+        </div>
+      </div>
+      <div class="modal-section">
+        <h4>Montessori-Hinweis</h4>
+        <p>Im Montessori-Kontext ist der Morgenkreis kürzer als in anderen Konzepten — die Freiarbeitszeit hat Vorrang. 10–15 Minuten sind ausreichend. Der Kreis sollte niemals in die Kernzeit der Freiarbeit hineinragen.</p>
+      </div>`
+  },
+  kreis_stille: {
+    title: 'Die Stilleübung nach Montessori',
+    sub: 'Besondere Kreisform · Selbstwahrnehmung & Konzentration',
+    body: `
+      <div class="modal-section">
+        <h4>Was ist die Stilleübung?</h4>
+        <p>Maria Montessori entdeckte die Stilleübung durch Beobachtung: Kinder können vollkommene Stille erreichen, wenn sie dazu eingeladen — nicht aufgefordert — werden. Es ist eine freiwillige, kollektive Erfahrung.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Durchführung</h4>
+        <ol class="step-list">
+          <li>Einladen, nicht befehlen: „Wollen wir heute einmal versuchen, ganz still zu sein?"</li>
+          <li>Kerze anzünden als Signal und atmosphärisches Element (je nach Einrichtung)</li>
+          <li>Pädagogin macht vor: Augen schließen, ruhig atmen, lauschen</li>
+          <li>Stille halten — kurz anfangen (30 Sekunden), langsam steigern</li>
+          <li>Nach der Stille: Was habe ich gehört? Was habe ich gespürt?</li>
+        </ol>
+      </div>
+      <div class="modal-section">
+        <h4>Tipps für die Praxis</h4>
+        <p>Nicht erzwingen — manche Kinder beobachten zunächst nur. Ruhige Hintergrundmusik kann helfen oder stören — ausprobieren. Die Stilleübung kann auch als Übergang in die Freiarbeit genutzt werden.</p>
+      </div>`
+  },
+  azubi_erstgespraech: {
+    title: 'Erstgespräch mit Auszubildenden — Leitfaden',
+    sub: 'Anleitungsgespräch · Erstes Kennenlernen',
+    body: `
+      <div class="modal-section">
+        <h4>Ziele des Erstgesprächs</h4>
+        <p>Vertrauen aufbauen, Erwartungen klären, Lernziele besprechen, Montessori-Konzept einführen, Ängste nehmen.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Gesprächsleitfaden</h4>
+        <ol class="step-list">
+          <li>Begrüßung & Ankommen — Wie war der erste Eindruck?</li>
+          <li>Vorstellung der Einrichtung und des Tagesablaufs</li>
+          <li>Besonderheiten der Montessori-Pädagogik kurz erklären</li>
+          <li>Erwartungen des Azubis erfragen — Was möchtest du lernen?</li>
+          <li>Eigene Erwartungen als Anleiterin transparent machen</li>
+          <li>Anleitungstermine vereinbaren (z.B. wöchentlich 15 Minuten)</li>
+          <li>Kontaktmöglichkeit bei Fragen besprechen</li>
+        </ol>
+      </div>
+      <div class="modal-section">
+        <h4>Wichtige Botschaft vermitteln</h4>
+        <p>„Du darfst Fragen stellen. Fehler sind Teil des Lernens. Ich bin deine Ansprechpartnerin, nicht deine Beurteilerin im Alltag — die Beurteilung findet zu festgelegten Zeiten statt."</p>
+      </div>`
+  },
+  eltern_datenschutz: {
+    title: 'Datenschutz & KI-Tools im Kindergarten',
+    sub: 'DSGVO-bewusst mit KI arbeiten',
+    body: `
+      <div class="modal-section">
+        <h4>Grundprinzip</h4>
+        <p>KI-Tools (wie ChatGPT, Claude etc.) können die pädagogische Arbeit unterstützen — aber nur, wenn keine personenbezogenen Daten eingegeben werden. Das gilt für Kinder, Familien und Kolleginnen gleichermaßen.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Was ist erlaubt?</h4>
+        <ul class="info-list">
+          <li>Elternbriefe mit Platzhaltern entwerfen lassen (z.B. [Name des Kindes])</li>
+          <li>Allgemeine Beobachtungsberichte strukturieren — ohne echte Namen</li>
+          <li>Kreisideen, Bastelprojekte, Liedtexte generieren</li>
+          <li>Fachliche Fragen zur Montessori-Pädagogik stellen</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h4>Was ist zu vermeiden?</h4>
+        <ul class="info-list">
+          <li>Echte Namen von Kindern oder Familien eingeben</li>
+          <li>Geburtsdaten, Adressen oder Telefonnummern teilen</li>
+          <li>Vollständige Beobachtungsberichte mit Personenbezug</li>
+          <li>Interne Teaminformationen oder Konflikte schildern</li>
+        </ul>
+      </div>`
+  },
+  bastel_laterne: {
+    title: 'St.-Martins-Laterne basteln',
+    sub: 'Ab 3 Jahren · Oktober/November',
+    body: `
+      <div class="modal-section">
+        <h4>Material (pro Kind)</h4>
+        <ul class="info-list">
+          <li>1 Konservendose (Ränder entfernen lassen!)</li>
+          <li>Transparentpapier in verschiedenen Farben</li>
+          <li>Holzleim oder Kleister</li>
+          <li>1 Holzstab (ca. 40 cm)</li>
+          <li>Draht zum Befestigen</li>
+          <li>LED-Teelichter (wichtig: kein echtes Feuer)</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <h4>Anleitung</h4>
+        <ol class="step-list">
+          <li>Dose innen und außen leicht mit Kleister bestreichen</li>
+          <li>Transparentpapier in Stücke reißen (nicht schneiden — Kinder lieben das!)</li>
+          <li>Überlappend aufkleben, bis Dose ganz bedeckt ist</li>
+          <li>Trocknen lassen (mind. 1 Nacht)</li>
+          <li>Drahthenkel an Dose befestigen, Stab einhängen</li>
+          <li>LED-Teelicht einsetzen — fertig!</li>
+        </ol>
+      </div>`
+  },
+  dl_frueh: {
+    title: 'Frühförderstelle — Weitervermittlungsbogen',
+    sub: 'Vorlage mit Platzhaltern (DSGVO-konform)',
+    body: `
+      <div class="modal-section">
+        <h4>Wichtiger Hinweis</h4>
+        <p>Diese Vorlage verwendet ausschließlich Platzhalter für personenbezogene Daten. Füge echte Namen, Geburtsdaten und Adressen erst in deiner eigenen, gesicherten Umgebung ein — niemals in KI-Tools.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Vorlage (Auszug)</h4>
+        <div class="lied-strophe" style="font-style:normal; font-size:13px; line-height:1.8;">
+          An die Frühförderstelle [EINRICHTUNGSNAME]<br><br>
+          Betrifft: [VORNAME KIND] [NACHNAME KIND], geb. [GEBURTSDATUM]<br><br>
+          Sehr geehrte Damen und Herren,<br>
+          mit Einverständnis der Erziehungsberechtigten [VORNAME MUTTER/VATER] [NACHNAME] möchten wir das oben genannte Kind zur Abklärung und ggf. Förderung vorstellen...<br><br>
+          Beobachtete Auffälligkeiten: [FREITEXT]<br><br>
+          Mit freundlichen Grüßen,<br>
+          [NAME PÄDAGOGIN], [FUNKTIONSBEZEICHNUNG]<br>
+          [EINRICHTUNGSNAME], [DATUM]
+        </div>
+      </div>`
+  }
+};
+
+function openModal(key) {
+  const data = modalData[key];
+  if (!data) return;
+  document.getElementById('modalBody').innerHTML = `
+    <h2>${data.title}</h2>
+    <p class="modal-sub">${data.sub}</p>
+    ${data.body}
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModalDirect() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+}
+
+function openDarb(key) {
+  if (modalData[key]) {
+    openModal(key);
+  } else {
+    const titleMap = {
+      löffeln: 'Löffeln (Körner)', falten: 'Serviette falten', rahmen: 'Knopfrahmen',
+      reißverschluss: 'Reißverschlussrahmen', tisch: 'Tisch abwischen', pflanze: 'Pflanze gießen',
+      hände: 'Hände waschen', brot: 'Brot schmieren', schneiden: 'Obst/Gemüse schneiden',
+      kehrschaufel: 'Kehren mit Handfeger', schuhe: 'Schuhe putzen',
+      braune_treppe: 'Braune Treppe', rote_stangen: 'Rote Stangen', farbplaettchen: 'Farbplättchen',
+      geometrie: 'Geometrisches Schränkchen', tastplatten: 'Tastplatten',
+      klangglocken: 'Klangglocken', riechbuechsen: 'Riechbüchsen', gewicht: 'Gewichtsplättchen',
+      zahlenstäbe: 'Spindelbuch', perlen: 'Goldenes Perlenmaterial', seguin: 'Seguin-Tafeln',
+      hundertertafel: 'Hunderter-Tafel', schlangen: 'Schlangen-Spiel', multiplikation: 'Multiplikationsbrett',
+      i_spy: 'Ich sehe etwas (I Spy)', grosses_alphabet: 'Großes Bewegliches Alphabet',
+      lesekaestchen: 'Erstes Lesekästchen', befehle: 'Befehlkärtchen',
+      metall_einlagen: 'Metallene Einlagen', nomenkasten: 'Nomenkasten',
+      puzzle_welt: 'Puzzle-Weltkarte', flaggen: 'Flaggen der Welt', jahreszeiten: 'Jahreszeiten-Kreis',
+      pflanzenteile: 'Pflanzenteile', tierklassen: 'Tierklassen-Sortierung',
+      zeitleiste: 'Zeitleiste der Erde', aggregat: 'Aggregatzustände Wasser', magnetismus: 'Magnetismus'
+    };
+    document.getElementById('modalBody').innerHTML = `
+      <h2>${titleMap[key] || key}</h2>
+      <p class="modal-sub">Vollständige Darbietungsanleitung</p>
+      <div class="modal-section">
+        <h4>Inhalt in Kürze</h4>
+        <p>Die detaillierte Schritt-für-Schritt-Anleitung für diese Darbietung steht in der vollständigen Portal-Version zur Verfügung — inklusive Materialangaben, Fehlerkontrolle, sprachlicher Erweiterung und Weiterführungsideen.</p>
+      </div>
+      <div class="modal-section">
+        <h4>Allgemeines Vorgehen bei Darbietungen</h4>
+        <ol class="step-list">
+          <li>Einladen: Kind ansprechen, fragen ob es etwas gezeigt bekommen möchte</li>
+          <li>Material gemeinsam holen — als Teil der Darbietung</li>
+          <li>Langsam und bewusst zeigen, kaum oder nicht sprechen</li>
+          <li>Kind einladen es selbst zu versuchen</li>
+          <li>Zurückziehen und beobachten — nicht kommentieren</li>
+        </ol>
+      </div>`;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function showPanel(id, btn) {
+  document.querySelectorAll('.shelf-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.shelf-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleAccordion(item) {
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModalDirect();
+});
+</script>
+</body>
+</html>
